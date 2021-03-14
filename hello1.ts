@@ -9,6 +9,8 @@ export async function handler(event, context, callback) {
   // async/await also works out of the box
   await new Promise((resolve) => setTimeout(resolve, 500));
 
+  throw new Error('Some error');
+
   const response = {
     statusCode: 200,
     body: JSON.stringify({
