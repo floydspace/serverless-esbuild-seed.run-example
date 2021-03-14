@@ -1,7 +1,8 @@
 service: serverless-example
 
 plugins:
-  - serverless-esbuild
+  # - serverless-esbuild
+  - serverless-bundle
   - serverless-offline
 
 package:
@@ -12,14 +13,19 @@ provider:
   runtime: nodejs12.x
 
 custom:
-  esbuild:
+  bundle:
     packager: yarn
-    bundle: true
-    minify: true
-    sourcemap: true
-    keepNames: true
-    external:
+    sourcemaps: true
+    externals:                      # Set non Webpack compatible packages as externals
       - lodash
+  # esbuild:
+  #   packager: yarn
+  #   bundle: true
+  #   minify: true
+  #   sourcemap: true
+  #   keepNames: true
+  #   external:
+  #     - lodash
 
 
 functions:
